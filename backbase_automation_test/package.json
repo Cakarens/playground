@@ -1,0 +1,50 @@
+{
+  "name": "mocha-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "first-test.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chromedriver": "^3.6.0",
+    "config": "1.27.0",
+    "express": "^4.16.3",
+    "import": "0.0.6",
+    "moment": "^2.22.1",
+    "export": "^0.1.337",
+    "it": "^1.1.1",
+    "node-fetch": "^2.1.2",
+    "selenium-webdriver": "^3.6.0",
+    "supertest": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "chai": "^3.5.0",
+    "chai-http": "^4.0.0",
+    "cross-env": "^5.1.1",
+    "eslint": "^4.9.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.3.0",
+    "mocha": "^2.4.5",
+    "mocha-eslint": "^4.1.0",
+    "selenium-webdriver": "^2.53.1",
+    "webdriver-manager": "~12.0.6"
+  },
+  "scripts": {
+    "test": "mocha ./test/specs/**/*.js",
+    "prepush": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cakarens/playground.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/Cakarens/playground/edit/master/README.md",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}

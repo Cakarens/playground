@@ -1,0 +1,5 @@
+{
+    "url": "http://computer-database.herokuapp.com/computers",
+    "explicitWaitMS": 10000,
+    "mochaTimeoutMS": 30000
+}
