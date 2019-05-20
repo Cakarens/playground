@@ -1,4 +1,5 @@
-Feature: Display a computer info.
+
+*Feature: Display a computer info.
   User sees each comuputer added in the Computer database
 
   Scenario: The computer info is displayed in the table
@@ -63,7 +64,9 @@ Feature: Display a computer info.
    |Company      |
 	
 	
-Feature: Add a new computer.
+	
+
+*Feature: Add a new computer.
   User adds a new comuputer to the Computer database
 
   Scenario: The confirmation message is displayed
@@ -85,17 +88,29 @@ Feature: Add a new computer.
 	And no new computer is added
 	And no confirmational message appears 
 	
-  Scenario Outlines: Validation of the input fields 
+  Scenario Outlines: Validation of the data input fields 
     Given the User is on the Add a computer page 
-	And all the field are correctly populated except the <field_name>
-	And the <field_name> is populated with <string>
+	And all the field are correctly populated except the <input_field>
+	And the <input_field> is populated with <string>
     When the User clicks the button to add the new computer
-    Then the <field_name> field is highlighted 
+    Then the <input_field> field is highlighted 
 	
   Examples:	
-	|field_name       | string   |
+	|input_field       | string   |
     |Introduced date  |1991-13-10|
     |Discontinued date|1991-13-10|
+	
+  Scenario Outlines: Validation -  Discontinued date cannot precede Introduced date
+    Given the User is on the Add a computer page 
+	And all the field are correctly populated except the <field_name>
+	And the <field_name1> is populated with <string>
+	And the <field_name2> is populated with <string>
+    When the User clicks the button to add the new computer
+    Then the <field_name2> field is highlighted 
+	
+  Examples:	
+	|field_name1      |field_name2      | string 1 |string 2  |
+    |Introduced date  |Discontinued date|2000-01-02|2000-01-01|
 	
   Scenario: Validation of the required input field 
     Given the User is on the Add a computer page 
@@ -104,7 +119,8 @@ Feature: Add a new computer.
     Then the Computer name field is highlighted 
 	
 	
-Feature: Edit a computer info.
+	
+*Feature: Edit a computer info.
   User edits an existing comuputer info
   
   Scenario: The User edits a computer info
@@ -128,7 +144,8 @@ Scenario: The User cancels editing
 	And the message is not displaed about the successful update
 
 
-Feature: Delete a computer info.
+
+*Feature: Delete a computer info.
   User deletes a comuputer info from the Computer database
 
 Scenario: The User deletes a computer info 
