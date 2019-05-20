@@ -1,0 +1,144 @@
+Feature: Display a computer info.
+  User sees each comuputer added in the Computer database
+
+  Scenario: The computer info is displayed in the table
+    Given the User is on the computer page 
+    Then the User sees the computer info in the table
+	
+  Scenario: The User navigates to the page
+    Given the User is on the computer page 
+    Then the User navigates using Previous and Next buttons
+	And the computer info is displayed in the table
+
+  Scenario: The User cannot navigate from the first page to the previous one
+    Given the User is on the first computer page 
+    Then the User cannot navigate to the previous page
+
+  Scenario: The User cannot navigate from the last page to the next one 
+    Given the User is on the last computer page 
+    Then the User cannot navigate to the next page
+	
+  Scenario: Filter by full Computer name returns results
+    Given the User is on the computer page 
+	When the User filters by entering an existing computer name in the Filter input field
+    Then the computer info is displayed in the table
+	
+  Scenario: Filter by partial Computer name returns results
+    Given the User is on the computer page 
+	When the User filters by entering an existing partial computer name in the Filter input field
+    Then the computer info is displayed in the table
+	
+  Scenario: No results returned by the Filter 
+    Given the User is on the computer page 
+	When the User filters by entering a non-existing computer name in the Filter input field
+    Then the appropriate messages are displayed
+	
+  Scenario: Refress the filtered results 
+    Given the User is on the computer page 
+	When the User filters by empty string as computer name 
+    Then the first page of results are displayed
+	
+  Scenario: Sort the results 
+    Given the User is on the computer page 
+	When the User sorts the results by <column name>
+    Then the first page results are sorted by <column name>
+	
+  Example:
+   |Computer name|
+   |Introduced   |
+   |Discontinued |
+   |Company      |
+	
+  Scenario: Filter Sort and navigate combined 
+    Given the User is on the computer page 
+	When the User sorts the results by <column name>
+	And the User filter results 
+	And the User navigate to the next page
+    Then the page results are sorted, filtered and belog to the correct page
+	
+  Example:
+   |Computer name|
+   |Introduced   |
+   |Discontinued |
+   |Company      |
+	
+	
+Feature: Add a new computer.
+  User adds a new comuputer to the Computer database
+
+  Scenario: The confirmation message is displayed
+    Given the User is on the computer page 
+    When the User adds a new computer
+    Then the computer page is opened
+	And the confirmation massige is displayed
+	
+  Scenario: The added computer appears in the table
+    Given the User is on the computer page 
+    When the User adds a new computer 
+    Then the added computer appears in the table 
+	
+  Scenario: User cancels adding a new computer 
+    Given the User is on the Add a computer page 
+	And all the field are populated 
+    When the User clicks Cancel button
+    Then the computer page is opened
+	And no new computer is added
+	And no confirmational message appears 
+	
+  Scenario Outlines: Validation of the input fields 
+    Given the User is on the Add a computer page 
+	And all the field are correctly populated except the <field_name>
+	And the <field_name> is populated with <string>
+    When the User clicks the button to add the new computer
+    Then the <field_name> field is highlighted 
+	
+  Examples:	
+	|field_name       | string   |
+    |Introduced date  |1991-13-10|
+    |Discontinued date|1991-13-10|
+	
+  Scenario: Validation of the required input field 
+    Given the User is on the Add a computer page 
+	And all the field are correctly populated except the Computer name field
+    When the User clicks the button to add the new computer
+    Then the Computer name field is highlighted 
+	
+	
+Feature: Edit a computer info.
+  User edits an existing comuputer info
+  
+  Scenario: The User edits a computer info
+    Given the User is on the computer page 
+    When the User selects a computer from the table 
+	And the Edit computer page is opened
+	And the User edits the computer info
+	And saves it
+	Than Computer page is opened
+	And the computer info is updated
+	And the message is displaed about the successful update
+
+Scenario: The User cancels editing 
+    Given the User is on the computer page 
+    When the User selects a computer from the table 
+	And the Edit computer page is opened
+	And the User edits the computer info
+	And the User cancels the editing 
+	Than Computer page is opened
+	And the computer info is not updated
+	And the message is not displaed about the successful update
+
+
+Feature: Delete a computer info.
+  User deletes a comuputer info from the Computer database
+
+Scenario: The User deletes a computer info 
+    Given the User is on the computer page 
+    When the User selects a computer from the table	
+	And the Edit computer page is opened
+	And the User deletes the computer info
+	Than Computer page is opened
+	And the computer info is not displayed 
+	And the message is displaed about the successful deletion
+	
+	
+	
