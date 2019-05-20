@@ -6,3 +6,5 @@ backbase_test_cases.txt
 
 The automation is implemented using JavaScript - Node.js with Mocha and Chai
 Folder: backbase_automation_test
+
+The automation test is created using the Visual Studio Code
