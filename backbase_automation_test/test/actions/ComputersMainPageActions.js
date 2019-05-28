@@ -9,7 +9,7 @@ var until = require('selenium-webdriver/lib/until')
 const TIMEOUT = 1000
 
 
-var ComputersMainActions = function (driver) {
+var ComputersMainPageActions = function (driver) {
     this.driver = driver
     var computersMainPage = new ComputersMainPage(driver)
 
@@ -61,4 +61,4 @@ var ComputersMainActions = function (driver) {
 }
 
 
-module.exports = ComputersMainActions
+module.exports = ComputersMainPageActions

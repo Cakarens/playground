@@ -9,7 +9,7 @@ var until = require('selenium-webdriver/lib/until')
 const TIMEOUT = 1000
 
 
-var AddComputerActions = function (driver) {
+var AddComputerPageActions = function (driver) {
     this.driver = driver
     var addComputerPage = new AddComputerPage(driver)
 
@@ -35,19 +35,19 @@ var AddComputerActions = function (driver) {
     this.enterComputerName = function (obj) {
         const { computer_info } = obj
         driver.wait(until.elementIsVisible(addComputerPage.computerName()), TIMEOUT)
-            .sendKeys(computer_info.computerName)
+            .sendKeys(computer_info)
     }
 
     this.enterIntroducedDate = function (obj) {
         const { computer_info } = obj
         driver.wait(until.elementIsVisible(addComputerPage.introducedDate()), TIMEOUT)
-            .sendKeys(computer_info.introduced_date)
+            .sendKeys(computer_info)
     }
 
     this.enterDiscontinuedDate = function (obj) {
         const { computer_info } = obj
         driver.wait(until.elementIsVisible(addComputerPage.discontinuedDate()), TIMEOUT)
-            .sendKeys(computer_info.discontinuedDate)
+            .sendKeys(computer_info)
     }
 
     this.selectCompany = function (obj) {

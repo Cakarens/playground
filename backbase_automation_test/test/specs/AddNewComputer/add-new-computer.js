@@ -1,28 +1,27 @@
-function sharedDescribe (computer_name,introduced_date,discontinued_date,company) {
+function sharedDescribe(computer_name,introduced_date,discontinued_date,company) {
     var test = require('selenium-webdriver/testing'),
-        AddComputerPageActions = require('../../actions/AddComputerPageActions'),
-        data = require('../Utils/reset_password.json')
+        AddComputerPageActions = require('../../actions/AddComputerPageActions.js'),
+        ComputersMainPageActions = require('../../actions/ComputersMainPageActions.js')
 
-
-        test.describe('Add a new Computer', function () {
+        describe('Add a new Computer', function () {
             var driver = require('../../driver').getDriver()
-            var addComputerPageActions = new addComputerPageActions(driver)
-            var computersMainPageActions = new computersMainPageActions(driver)
+            var addComputerPageActions = new AddComputerPageActions(driver)
+            var computersMainPageActions = new ComputersMainPageActions(driver)
             var config = require('config')
             var url = config.get('url')
 
-            test.before(function (done) {
+            before(function (done) {
                 driver.get(url)
-                driver.manage().timeouts().implicitlyWait(1000)
+                driver.manage().setTimeouts( { implicit: 5000 } )
                 done()
             })
 
-            test.after(function (done) {
+            after(function (done) {
                 driver.quit()
                 done()
             })
 
-            test.it('When the User adds a new computer', function (done) {
+            it('When the User adds a new computer', function (done) {
                 computersMainPageActions.verifyComputersMainPage()
                 computersMainPageActions.clickButtonAddANewComputer()
                 addComputerPageActions.verifyAddComputerPage()
@@ -33,8 +32,8 @@ function sharedDescribe (computer_name,introduced_date,discontinued_date,company
                 addComputerPageActions.clickButtonCreateThisComputer()
                 done()
             })
-            test.it('Then the computer page is opened and the confirmation massige is displayed', function (done) {
-                computersMainPageActions.verifyAddComputerPag()
+            it('Then the computer page is opened and the confirmation massige is displayed', function (done) {
+                computersMainPageActions.verifyComputersMainPage()
                 computersMainPageActions.verifyMessageSuccessfulAddComputer()
                 done()
             })
